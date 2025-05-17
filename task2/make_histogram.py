@@ -29,3 +29,5 @@ plt.title(f'гистограмма плотности (n={n}, k={k}, h={h:.3f})'
 plt.grid(True, linestyle='--', alpha=0.5)
 plt.savefig("histogram.png")
 plt.show()
+
+# www.geeksforgeeks.org/how-to-calculate-and-plot-a-cumulative-distribution-function-with-matplotlib-in-python/
