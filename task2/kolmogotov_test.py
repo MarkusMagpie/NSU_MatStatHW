@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import uniform
+from scipy.special import kolmogorov
 
 data = [0.037, 0.941, 0.683, 0.15, 0.84, 0.137, 0.374, 0.316, 0.907, 0.042,
         0.729, 0.065, 0.709, 0.299, 0.105, 0.703, 0.149, 0.049, 0.107, 0.470, 
@@ -55,13 +56,28 @@ res = np.sqrt(n) * d_statistic
 # https://vk.com/doc-50757966_626670653
 k_kvantil = 1.22
 
+# вычисляю РДУЗ (из мана:  It is equal to the (limit as n->infinity of the) probability that sqrt(n) * max absolute deviation > y)
+# https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.kolmogorov.html
+p_value = kolmogorov(res)
+
 print(f"значение sup|F_n^(*)(t) - F_0(t)| = {d_statistic:.3f} в точке t = {sup_point:.3f}")
 print(f"расстояние Колмогорова (res): {res:.3f}")
 print(f"значение квантиля распределения Колмогорова уровня 1 - epsilon (k_kvantil): {k_kvantil:.3f}")
+print(f"РДУЗ (p-value): {p_value:.3f}")
+
+print("\nпо результатам РДУЗ:")
+
+if (p_value <= 0.05): 
+    print("отвергаем H_0")
+elif (p_value >= 0.1):
+    print("принимаем H_0")
+
+print(f"\nтакже в подтверждение принятия гипотезы H_0 свидетельствует что значение эпсилон меньше РДУЗ: 0.08 < {p_value:.3f}")
 
 print()
 
 if res > k_kvantil:
     print(f"отвергаем H_0: данные НЕ следуют равномерному распределению на [0, 1] ({res:.3f} > {k_kvantil:.3f})")
 else:
-    print(f"нет оснований отвергнуть H_0: данные согласуются с равномерным распределением на [0, 1] ({res:.3f} <= {k_kvantil:.3f})")
+    print(f"принимаем H_0: данные согласуются с равномерным распределением на [0, 1] ({res:.3f} <= {k_kvantil:.3f})")
+
