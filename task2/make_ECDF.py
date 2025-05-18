@@ -20,7 +20,7 @@ plt.step(x, y, where='post', label='эмпирическая CDF', color='blue')
 plt.plot(x_line, theoretical_cdf, linestyle='--', label='теоретическая CDF U[0,1]', color='red') # теоретическая ФР отображаю f(x)=x на [0,1] 
 
 plt.xlabel('значение элемента выборки X_i', fontsize=14)
-plt.ylabel('F_30^(*)(t)', fontsize=14)
+plt.ylabel('F_30^(*)(t) (CDF)', fontsize=14)
 plt.title('эмпирическая и теоретическая CDF', fontsize=16)
 plt.legend()
 plt.grid(True, linestyle='--', alpha=0.5)
