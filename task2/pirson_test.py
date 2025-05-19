@@ -24,7 +24,7 @@ df = k - 1
 
 # p-value - вероятность получить статистику не менее наблюдаемой под H_0 => вычисляю хвост
 # P(chi_sq_stat >= chi_sq_stat(на данной выборке)) = 1 - F(chi_sq_stat(на данной выборке)) = 1 - P(chi_sq_stat < chi_sq_stat(на данной выборке))
-# https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.chi2.html?utm_source=chatgpt.com
+# https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.chi2.html
 p_value = 1 - chi2.cdf(chi_sq_stat, df)
 
 print(f"наблюдаемые частоты: {observed_freq}")
