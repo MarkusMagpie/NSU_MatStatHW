@@ -63,19 +63,17 @@ p_value = kolmogorov(res)
 print(f"значение sup|F_n^(*)(t) - F_0(t)| = {d_statistic:.3f} в точке t = {sup_point:.3f}")
 print(f"расстояние Колмогорова (res): {res:.3f}")
 print(f"значение квантиля распределения Колмогорова уровня 1 - epsilon (k_kvantil): {k_kvantil:.3f}")
-print(f"РДУЗ (p-value): {p_value:.3f}")
-
-print("\nпо результатам РДУЗ:")
-
-if (p_value <= 0.05): 
-    print("РДУЗ <= 0.05 => отвергаем H_0")
-elif (p_value >= 0.1):
-    print("РДУЗ >= 0.1 => принимаем H_0")
-
-print()
 
 if res > k_kvantil:
     print(f"отвергаем H_0: данные НЕ следуют равномерному распределению на [0, 1] ({res:.3f} > {k_kvantil:.3f})")
 else:
     print(f"принимаем H_0: данные согласуются с равномерным распределением на [0, 1] ({res:.3f} <= {k_kvantil:.3f})")
 
+print()
+
+print(f"РДУЗ (p-value): {p_value:.3f}")
+
+if (p_value <= 0.05): 
+    print("РДУЗ <= 0.05 => отвергаем H_0")
+elif (p_value >= 0.1):
+    print("РДУЗ >= 0.1 => принимаем H_0")
