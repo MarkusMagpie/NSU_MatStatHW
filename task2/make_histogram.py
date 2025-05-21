@@ -5,7 +5,7 @@ data = [0.037, 0.941, 0.683, 0.15, 0.84, 0.137, 0.374, 0.316, 0.907, 0.042,
         0.258, 0.364, 0.415, 0.123, 0.311, 0.752, 0.999, 0.409, 0.337, 0.654]
 
 n = len(data)
-k = 10 
+k = 5
 x_min, x_max = min(data), max(data)
 print("a = {}, b = {}".format(x_min, x_max))
 h = (x_max - x_min) / k # ширина каждого бина (отрезка)
@@ -23,7 +23,7 @@ plt.hist(
     edgecolor='black'
 )
 
-plt.xlabel('значение', fontsize=14)
+plt.xlabel('значение наблюдения', fontsize=14)
 plt.ylabel('оценка плотности', fontsize=14)
 plt.title(f'гистограмма плотности (n={n}, k={k}, h={h:.3f})', fontsize=16)
 plt.grid(True, linestyle='--', alpha=0.5)
