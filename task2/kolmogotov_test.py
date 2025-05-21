@@ -20,8 +20,8 @@ x, y = ecdf(data)
 
 # построение графика ЭФР и теоретической ФР
 plt.figure(figsize=(10, 5))
-plt.step(x, y, where='post', label='эмпирическая CDF', color='blue')  # ЭФР - ступенчатый график (where - положение вертикального перехода между ступенками (pre, mid, post))
-plt.plot(x, uniform.cdf(x), label='теоретическая CDF U[0,1]', linestyle='--', color='red') # теоретическая ФР отображаю f(x)=x на [0,1] 
+plt.step(x, y, where='post', label='ЭФР', color='blue')  # ЭФР - ступенчатый график (where - положение вертикального перехода между ступенками (pre, mid, post))
+plt.plot(x, uniform.cdf(x), label='теоретическая ФР U[0,1]', linestyle='--', color='red') # теоретическая ФР отображаю f(x)=x на [0,1] 
 #uniform.cdf(x) - теоретическая ФР для U[0,1] в точке x (F_0(x_i))
 
 # нахождение точки максимального отклонения между эмпирической и теоретической ФР
@@ -40,7 +40,7 @@ plt.vlines(sup_point, ymin=uniform.cdf(sup_point), ymax=y[max_idx], color='black
 
 plt.xlabel('значение элемента выборки X_i', fontsize=14)
 plt.ylabel('CDF', fontsize=14)
-plt.title('эмпирическая и теоретическая CDF', fontsize=16)
+plt.title('эмпирическая и теоретическая ФР', fontsize=16)
 plt.legend()
 plt.grid(True)
 plt.savefig("ECDF_for_Kolmogorov_test.png")
@@ -51,10 +51,10 @@ d_statistic = np.max(d)
 
 # элементы статистического критерия: мера близости (res) и квантиль (k_kvantil)  
 res = np.sqrt(n) * d_statistic
-# 1 - epsilon = 1 - 0.08 = 0.92. k_(0.92) = 1.22 
+# 1 - epsilon = 1 - 0.08 = 0.92. k_(0.92) = ?
 # https://people.cs.pitt.edu/~lipschultz/cs1538/prob-table_KS.pdf
 # https://vk.com/doc-50757966_626670653
-k_kvantil = 1.22
+k_kvantil = 1.269
 
 # вычисляю РДУЗ (из мана:  It is equal to the (limit as n->infinity of the) probability that sqrt(n) * max absolute deviation > y)
 # https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.kolmogorov.html
@@ -65,9 +65,9 @@ print(f"расстояние Колмогорова (res): {res:.3f}")
 print(f"значение квантиля распределения Колмогорова уровня 1 - epsilon (k_kvantil): {k_kvantil:.3f}")
 
 if res > k_kvantil:
-    print(f"отвергаем H_0: данные НЕ следуют равномерному распределению на [0, 1] ({res:.3f} > {k_kvantil:.3f})")
+    print(f"отвергаем H_0: данные НЕ следуют равномерному распределению на [0, 1] ({res:.3f} >= {k_kvantil:.3f})")
 else:
-    print(f"принимаем H_0: данные согласуются с равномерным распределением на [0, 1] ({res:.3f} <= {k_kvantil:.3f})")
+    print(f"принимаем H_0: данные согласуются с равномерным распределением на [0, 1] ({res:.3f} < {k_kvantil:.3f})")
 
 print()
 
