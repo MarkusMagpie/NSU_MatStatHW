@@ -1,17 +1,18 @@
 import matplotlib.pyplot as plt # для графиков
+import numpy as np
 
 data = [0.037, 0.941, 0.683, 0.15, 0.84, 0.137, 0.374, 0.316, 0.907, 0.042,
         0.729, 0.065, 0.709, 0.299, 0.105, 0.703, 0.149, 0.049, 0.107, 0.470, 
         0.258, 0.364, 0.415, 0.123, 0.311, 0.752, 0.999, 0.409, 0.337, 0.654]
 
 n = len(data)
-k = 5
-x_min, x_max = min(data), max(data)
-print("a = {}, b = {}".format(x_min, x_max))
-h = (x_max - x_min) / k # ширина каждого бина (отрезка)
+k = int(1 + 3.322 * np.log10(n)) # правило Стёрджеса
+a, b = min(data), max(data)
+print("a = {}, b = {}".format(a, b))
+h = (b - a) / k # ширина каждого бина (отрезка)
 
 # границы интервалов
-bins = [x_min + i*h for i in range(k+1)]
+bins = [a + i*h for i in range(k+1)]
 
 # сама гистограмма плотности
 plt.figure(figsize=(10, 5))
