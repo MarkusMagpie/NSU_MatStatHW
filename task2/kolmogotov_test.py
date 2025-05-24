@@ -54,7 +54,7 @@ d_statistic = np.max(d)
 res = np.sqrt(n) * d_statistic
 # 1 - epsilon = 1 - 0.08 = 0.92. k_(0.92) = ?
 # https://people.cs.pitt.edu/~lipschultz/cs1538/prob-table_KS.pdf
-# https://vk.com/doc-50757966_626670653
+# https://en.wikipedia.org/wiki/Kolmogorov–Smirnov_test
 k_kvantil = 1.269
 
 # вычисляю РДУЗ (из мана:  It is equal to the (limit as n->infinity of the) probability that sqrt(n) * max absolute deviation > y)
